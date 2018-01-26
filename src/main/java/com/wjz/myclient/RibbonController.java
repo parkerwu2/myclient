@@ -26,7 +26,7 @@ public class RibbonController {
     @RequestMapping(value = "/getOrder",method = RequestMethod.POST)
     public String getUser(@RequestParam(value="orderNo", required = true)String orderNo){
         //调用远程服务
-        ResponseEntity<String> res = restTemplate.postForEntity("http://mySpringBootLearn1/order/queryOrderByNo", orderNo, String.class);
+        ResponseEntity<String> res = restTemplate.postForEntity("http://mySpringBootLearn1/order/queryOrderByNo?orderNo=" + orderNo, orderNo, String.class);
         System.out.println(res.toString());
         return res.toString();
 
