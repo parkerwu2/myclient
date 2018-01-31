@@ -24,7 +24,7 @@ public class FeignController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/getOrder2",method = RequestMethod.POST)
+    @RequestMapping(value = "/getOrder2",method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "hiError")
     public String getUser(@RequestParam(value="orderNo", required = true)String orderNo){
         return orderService.queryOrderByNo(orderNo);
