@@ -2,6 +2,7 @@ package com.wjz.myclient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +31,9 @@ public class RibbonController {
         System.out.println(res.toString());
         return res.toString();
 
+    }
+    @Bean
+    public AlwaysSampler defaultSampler(){
+        return new AlwaysSampler();
     }
 }

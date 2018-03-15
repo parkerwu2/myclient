@@ -4,6 +4,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wjz.myclient.entity.TestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -46,5 +48,9 @@ public class FeignController {
 
     public String testError(@Valid TestParam param, BindingResult bindingResult) {
         return bindingResult.getAllErrors().get(0).getCodes()[0];
+    }
+    @Bean
+    public AlwaysSampler defaultSampler(){
+        return new AlwaysSampler();
     }
 }
